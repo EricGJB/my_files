@@ -1,0 +1,63 @@
+# 6G AI Traffic Testbed Dependencies
+
+# Network Emulation (local sibling package — install separately)
+# netemu is a standalone package in the sibling netemu/ directory.
+# Install it before installing these dependencies:
+#   cd <repo-root>
+#   pip install -e netemu
+#   pip install -r aitestbed/requirements.txt
+
+# LLM Clients
+openai>=1.0.0
+azure-ai-inference>=1.0.0b1
+google-genai>=1.0.0
+websockets>=12.0  # For OpenAI Realtime API
+
+# Data Processing
+pandas>=2.0.0
+pyarrow>=14.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0  # Excel export backend for pandas.ExcelWriter
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=1.0.0
+requests>=2.28.0
+
+# Optional: Image processing for multimodal
+Pillow>=10.0.0
+
+# Optional: Token counting
+tiktoken>=0.5.0
+
+# L7 Capture (HTTP/HTTPS interception)
+mitmproxy>=10.0.0
+
+# L3/L4 Capture (pcap analysis)
+dpkt>=1.9.8
+
+# Optional: WebRTC transport for realtime scenarios
+aiortc>=1.5.0
+av>=10.0.0  # PyAV — audio frame handling / resampling for WebRTC realtime client
+
+# Optional: Computer use executor
+playwright>=1.41.0
+
+# MCP (Model Context Protocol)
+# Some MCP servers are npm packages, others are Python packages.
+# Install npm-based servers: npm install -g @modelcontextprotocol/server-brave-search
+# The Python MCP client uses subprocess to communicate with MCP servers.
+mcp>=1.0.0              # Python MCP client SDK (mcp.types, protocol constants)
+mcp-server-fetch>=2025.0.0
+
+# Optional: Alpaca market data MCP server
+# Install via: uvx alpaca-mcp-server init
+# Or: pip install alpaca-mcp-server
+alpaca-mcp-server>=0.1.0
+
+# Async support (included in Python 3.7+, but useful for type hints)
+# asyncio is part of stdlib

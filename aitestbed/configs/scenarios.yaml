@@ -1,0 +1,946 @@
+# Scenario Definitions for 6G AI Traffic Testbed
+
+scenarios:
+  # Scenario-level network fields:
+  #   network_interface: primary interface for tc/tcpdump when the runner uses the
+  #     default auto-detected interface. Use "lo" for local-only providers such as vLLM.
+  #   loopback_interface: auxiliary loopback interface used by scenario code for
+  #     HTTP-mode MCP shaping. This documents the expected path; the agent scenarios
+  #     already apply loopback tc rules internally when mcp_transport=http.
+  # Scenario-level timing fields:
+  #   inter_prompt_delay_sec: seconds to sleep BETWEEN prompts within the same
+  #     session (simulates user think-time). Default 0 — prompts fire back-to-back.
+  #     Skipped before the first prompt. Applied by all multi-prompt scenarios
+  #     (chat, multimodal, image, video, computer_use, realtime, agent variants).
+
+  chat_basic:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Basic single-turn chat interaction"
+    provider: "openai"
+    model: "gpt-5-mini"
+    stream: false
+    prompts:
+      - "Briefly describe potential 6G media trends and AI services."
+      - "What are the key challenges for immersive media over mobile networks?"
+      - "Explain the role of edge computing in 6G architectures."
+
+  chat_streaming:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Multi-turn chat with streaming responses"
+    provider: "openai"
+    model: "gpt-5-mini"
+    stream: true
+    max_turns: 5
+    prompts:
+      - "What is the Model Context Protocol (MCP) and how does it work?"
+      - "How can AI agents improve user experience in mobile applications?"
+      - "Describe traffic patterns for real-time AI inference."
+
+  chat_gemini:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Chat interaction using Google Gemini"
+    provider: "gemini"
+    model: "gemini-3-flash-preview"
+    stream: true
+    prompts:
+      - "Explain how 6G networks will support AI workloads differently than 5G."
+      - "What QoE metrics are relevant for generative AI services?"
+
+  # =============================================================================
+  # vLLM Scenarios (OpenAI-compatible)
+  # =============================================================================
+
+  chat_vllm:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Chat interaction using vLLM-hosted Qwen3-VL"
+    provider: "vllm"
+    model: "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    network_interface: "lo"
+    stream: true
+    prompts:
+      - "Summarize recent advances in AI traffic analysis."
+      - "Explain the role of edge computing in 6G architectures."
+      - "What are the key QoS requirements for real-time AI inference over mobile networks?"
+
+  video_understanding_vllm:
+    type: "video_understanding"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Video understanding via vLLM (Qwen3-VL, base64-encoded upload)"
+    provider: "vllm"
+    model: "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    network_interface: "lo"
+    stream: false
+    # Bundled test asset (~1 MB). Resolved relative to the orchestrator's
+    # CWD (aitestbed/). Override with VIDEO_PATH or by editing this entry
+    # if you have a longer benchmark clip.
+    video_path: "examples/assets/test_video.mp4"
+    prompts:
+      - "Describe the main actions in the video."
+
+  # =============================================================================
+  # DeepSeek LLM Scenarios
+  # =============================================================================
+
+  chat_deepseek:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Basic chat interaction using DeepSeek"
+    provider: "deepseek"
+    model: "deepseek-chat"
+    stream: false
+    prompts:
+      - "Briefly describe potential 6G media trends and AI services."
+      - "What are the key challenges for immersive media over mobile networks?"
+      - "Explain the role of edge computing in 6G architectures."
+
+  chat_deepseek_streaming:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Streaming chat interaction using DeepSeek"
+    provider: "deepseek"
+    model: "deepseek-chat"
+    stream: true
+    max_turns: 5
+    prompts:
+      - "What is the Model Context Protocol (MCP) and how does it work?"
+      - "How can AI agents improve user experience in mobile applications?"
+      - "Describe traffic patterns for real-time AI inference."
+
+  chat_deepseek_coder:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Code-focused chat using DeepSeek Coder"
+    provider: "deepseek"
+    model: "deepseek-coder"
+    stream: true
+    prompts:
+      - "Write a Python function to measure network latency using ping."
+      - "Implement a simple WebSocket client for real-time messaging."
+      - "Create a traffic analyzer that categorizes packets by protocol."
+
+  chat_deepseek_reasoner:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Deep reasoning chat using DeepSeek Reasoner (R1)"
+    provider: "deepseek"
+    model: "deepseek-reasoner"
+    stream: true
+    prompts:
+      - "Analyze the trade-offs between latency and throughput in 6G network design."
+      - "What are the theoretical limits of AI inference at the network edge?"
+      - "Compare different approaches to traffic prediction using machine learning."
+
+  shopping_agent_deepseek:
+    type: "agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Shopping assistant with tool calling using DeepSeek"
+    provider: "deepseek"
+    model: "deepseek-chat"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    tools:
+      - "check_price"
+      - "search_products"
+      - "get_reviews"
+    max_tool_calls: 5
+    prompts:
+      - "Find the best noise-cancelling headphones under $300"
+      - "What is the best 6G-capable smartphone under 1000 USD?"
+      - "Compare the top 3 wireless earbuds for video calls"
+
+  web_search_agent_deepseek:
+    type: "agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Research agent with web search capability using DeepSeek"
+    provider: "deepseek"
+    model: "deepseek-chat"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    tools:
+      - "web_search"
+      - "fetch_url"
+    max_tool_calls: 10
+    prompts:
+      - "Research the latest developments in 3GPP Release 19 for AI/ML"
+      - "Find recent papers on traffic characterization for LLM services"
+
+  direct_web_search_deepseek:
+    type: "direct_search"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Multi-threaded web search with DeepSeek synthesis"
+    provider: "deepseek"
+    model: "deepseek-chat"
+    search_engine: "brave"
+    thread_count: 5
+    search_timeout: 30.0
+    max_results: 10
+    synthesize_with_llm: true
+    stream: false
+    queries:
+      - "6G wireless technology latest developments 2026"
+      - "AI traffic patterns mobile networks research"
+      - "3GPP release 19 AI/ML features"
+      - "machine learning network optimization techniques"
+      - "edge computing AI inference latency measurements"
+
+  shopping_agent:
+    type: "agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Shopping assistant with tool calling"
+    provider: "openai"
+    model: "gpt-5-mini"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    tools:
+      - "check_price"
+      - "search_products"
+      - "get_reviews"
+    max_tool_calls: 5
+    prompts:
+      - "Find the best noise-cancelling headphones under $300"
+      - "What is the best 6G-capable smartphone under 1000 USD?"
+      - "Compare the top 3 wireless earbuds for video calls"
+
+  web_search_agent:
+    type: "agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Research agent with web search capability"
+    provider: "openai"
+    model: "gpt-5-mini"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    tools:
+      - "web_search"
+      - "fetch_url"
+    max_tool_calls: 10
+    prompts:
+      - "Research the latest developments in 3GPP Release 19 for AI/ML"
+      - "Find recent papers on traffic characterization for LLM services"
+
+  general_agent:
+    type: "general_agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "General-purpose agent with full MCP access"
+    provider: "openai"
+    model: "gpt-5.2"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    max_tool_calls: 10
+    prompts:
+      - "Research and write a brief report on quantum computing advances in 2026. Save the report to a file."
+
+  computer_control_agent:
+    type: "computer_use"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Computer use agent via OpenAI computer tool"
+    provider: "openai"
+    model: "gpt-5.4"
+    max_steps: 12
+    execution_backend: "playwright"
+    environment: "browser"
+    viewport:
+      width: 1280
+      height: 720
+    full_page_screenshot: true
+    navigation_timeout_ms: 30000
+    wait_after_action_ms: 250
+    prompts:
+      - "Open https://example.com, capture the page title and main headings, and save a short report to /tmp/testbed-sandbox/computer_control_report.md."
+      - "Search for 'OpenAI tools computer use' in the browser and summarize the first result."
+
+  image_generation:
+    type: "image"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Image generation using DALL-E"
+    provider: "openai"
+    model: "gpt-image-1.5"
+    size: "1024x1024"
+    quality: "standard"
+    prompts:
+      - "A futuristic 6G network visualization with AI agents communicating"
+      - "Abstract representation of network traffic patterns"
+      - "A mobile device showing immersive AR content"
+
+  multimodal_analysis:
+    type: "multimodal"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Multimodal input analysis (PDF + images + text)"
+    provider: "gemini"
+    model: "gemini-3-flash-preview"
+    # Per-prompt media — one entry per prompt, in order.
+    # First turn uploads a PDF (uplink-heavy, inline_data Part); remaining
+    # three upload images. Resolved relative to the orchestrator's CWD
+    # (aitestbed/).
+    media:
+      - {document: "../../Math_olympiad.pdf"}
+      - {image: "examples/assets/network_diagram.png"}
+      - {image: "examples/assets/traffic_pattern.png"}
+      - {image: "examples/assets/latency_heatmap_sample.png"}
+    prompts:
+      - "Solve question 6 in the attached PDF. Show your work."
+      - "Analyze this network diagram and describe the traffic flow between components"
+      - "Describe the traffic pattern shown in this visualization. What type of AI workload does it represent?"
+      - "Analyze this latency heatmap. Which scenarios and network profiles show the best performance?"
+
+  # =============================================================================
+  # Real-time Conversational AI Scenarios (OpenAI Realtime API)
+  # =============================================================================
+
+  realtime_text:
+    type: "realtime_conversation"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Real-time conversational AI using WebSocket (text mode)"
+    provider: "openai"
+    model: "gpt-realtime-mini"
+    modalities: ["text", "audio"]
+    voice: "alloy"
+    temperature: 0.8
+    system_prompt: "You are a helpful assistant for real-time conversations. Keep responses concise and natural."
+    prompts:
+      - "What are the benefits of 6G networks for real-time AI applications?"
+      - "How does WebSocket improve latency compared to HTTP REST APIs?"
+      - "Explain the concept of time-to-first-token in streaming AI responses."
+
+  realtime_text_webrtc:
+    type: "realtime_conversation_webrtc"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Real-time conversational AI using WebRTC (text mode)"
+    provider: "openai"
+    model: "gpt-realtime-mini"
+    modalities: ["text"]
+    voice: "alloy"
+    temperature: 0.8
+    system_prompt: "You are a helpful assistant for real-time conversations. Keep responses concise and natural."
+    prompts:
+      - "Summarize the benefits of WebRTC for real-time AI."
+      - "What is the expected impact on TTFT versus WebSocket?"
+
+  realtime_interactive:
+    type: "realtime_conversation"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Interactive real-time conversation simulating voice assistant"
+    provider: "openai"
+    model: "gpt-realtime-mini"
+    modalities: ["text", "audio"]
+    voice: "shimmer"
+    temperature: 0.9
+    system_prompt: "You are a friendly voice assistant. Respond naturally as if speaking in a real-time conversation. Keep responses brief and conversational."
+    prompts:
+      - "Hey, what's the weather like for outdoor activities today?"
+      - "Can you recommend a good restaurant nearby?"
+      - "Set a reminder for my meeting at 3pm"
+      - "What's on my schedule for tomorrow?"
+      - "Thanks, that's all for now!"
+
+  realtime_technical:
+    type: "realtime_conversation"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Technical support real-time conversation"
+    provider: "openai"
+    model: "gpt-realtime-mini"
+    modalities: ["text", "audio"]
+    voice: "echo"
+    temperature: 0.7
+    system_prompt: "You are a technical support specialist helping users with network and AI-related issues. Provide clear, step-by-step guidance."
+    prompts:
+      - "My internet connection keeps dropping during video calls"
+      - "What settings should I check first?"
+      - "How can I test if it's a bandwidth issue?"
+      - "Should I contact my ISP or is this something I can fix myself?"
+
+  realtime_multilingual:
+    type: "realtime_conversation"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Multilingual real-time conversation for testing language handling"
+    provider: "openai"
+    model: "gpt-realtime-mini"
+    modalities: ["text", "audio"]
+    voice: "coral"
+    temperature: 0.8
+    system_prompt: "You are a multilingual assistant. Respond in the same language as the user's message."
+    prompts:
+      - "Hello, can you help me understand AI traffic patterns?"
+      - "Bonjour, comment fonctionne le streaming en temps réel?"
+      - "Hola, cuáles son las ventajas de 6G?"
+      - "What's the key difference between 5G and 6G latency?"
+
+  realtime_audio:
+    type: "realtime_audio"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Audio-based real-time conversation (voice in/voice out)"
+    provider: "openai"
+    model: "gpt-realtime-mini"
+    modalities: ["text", "audio"]
+    voice: "sage"
+    audio_format: "pcm16"
+    sample_rate: 24000
+    temperature: 0.8
+    tts:
+      enabled: true
+      model: "tts-1"
+      voice: "alloy"
+      response_format: "pcm"
+      speed: 1.0
+      fallback_to_text: true
+    system_prompt: "You are a voice assistant. Listen carefully and respond naturally to audio input."
+    prompts:
+      - "Hello, can you hear me?"
+      - "What can you help me with today?"
+      - "Tell me about real-time AI applications"
+
+  realtime_audio_webrtc:
+    type: "realtime_audio_webrtc"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Audio-based real-time conversation over WebRTC (voice in/voice out)"
+    provider: "openai"
+    model: "gpt-realtime-mini"
+    modalities: ["text", "audio"]
+    voice: "sage"
+    audio_format: "pcm16"
+    sample_rate: 24000
+    temperature: 0.8
+    tts:
+      enabled: true
+      model: "tts-1"
+      voice: "alloy"
+      response_format: "pcm"
+      speed: 1.0
+      fallback_to_text: true
+    system_prompt: "You are a voice assistant. Listen carefully and respond naturally to audio input."
+    prompts:
+      - "Hello, can you hear me?"
+      - "What can you help me with today?"
+      - "Tell me about real-time AI applications"
+
+  # =============================================================================
+  # Azure OpenAI Scenarios
+  # =============================================================================
+
+  chat_azure_openai:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Chat interaction using Azure OpenAI (GPT-5.2 deployment)"
+    disabled: true
+    provider: "azure_openai"
+    model: "gpt-5.2"
+    stream: false
+    prompts:
+      - "Briefly describe potential 6G media trends and AI services."
+      - "What are the key challenges for immersive media over mobile networks?"
+      - "Explain the role of edge computing in 6G architectures."
+
+  chat_azure_openai_streaming:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Streaming chat using Azure OpenAI"
+    disabled: true
+    provider: "azure_openai"
+    model: "gpt-5.2"
+    stream: true
+    max_turns: 5
+    prompts:
+      - "What is the Model Context Protocol (MCP) and how does it work?"
+      - "How can AI agents improve user experience in mobile applications?"
+      - "Describe traffic patterns for real-time AI inference."
+
+  shopping_agent_azure_openai:
+    type: "agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Shopping assistant with tool calling using Azure OpenAI"
+    disabled: true
+    provider: "azure_openai"
+    model: "gpt-5.2"
+    tools:
+      - "check_price"
+      - "search_products"
+      - "get_reviews"
+    max_tool_calls: 5
+    prompts:
+      - "Find the best noise-cancelling headphones under $300"
+      - "What is the best 6G-capable smartphone under 1000 USD?"
+      - "Compare the top 3 wireless earbuds for video calls"
+
+  image_generation_azure:
+    type: "image"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Image generation using GPT Image on Azure OpenAI"
+    disabled: true
+    provider: "azure_openai"
+    model: "gpt-image-1-mini"
+    size: "1024x1024"
+    quality: "standard"
+    prompts:
+      - "A futuristic 6G network visualization with AI agents communicating"
+      - "Abstract representation of network traffic patterns"
+      - "A mobile device showing immersive AR content"
+
+  # =============================================================================
+  # Azure AI Inference Scenarios (Phi, Llama, Mistral, etc.)
+  # =============================================================================
+
+  chat_azure_inference:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Chat interaction using Azure AI Inference (Phi-4-mini)"
+    disabled: true
+    provider: "azure_inference"
+    model: "Phi-4-mini-instruct"
+    stream: false
+    prompts:
+      - "Briefly describe potential 6G media trends and AI services."
+      - "What are the key challenges for immersive media over mobile networks?"
+      - "Explain the role of edge computing in 6G architectures."
+
+  chat_azure_inference_streaming:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Streaming chat using Azure AI Inference (Phi-4-mini)"
+    disabled: true
+    provider: "azure_inference"
+    model: "Phi-4-mini-instruct"
+    stream: true
+    max_turns: 5
+    prompts:
+      - "What is the Model Context Protocol (MCP) and how does it work?"
+      - "How can AI agents improve user experience in mobile applications?"
+      - "Describe traffic patterns for real-time AI inference."
+
+  chat_azure_inference_llama:
+    type: "chat"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Streaming chat using Azure AI Inference (Llama 4 Maverick)"
+    disabled: true
+    provider: "azure_inference"
+    model: "Llama-4-Maverick-17B-128E-Instruct-FP8"
+    stream: true
+    max_turns: 5
+    prompts:
+      - "Explain how 6G networks will support AI workloads differently than 5G."
+      - "What QoE metrics are relevant for generative AI services?"
+
+  # =============================================================================
+  # Music Agent Scenarios (Spotify MCP)
+  # =============================================================================
+
+  music_search:
+    type: "music_agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Music search agent using Spotify MCP tools"
+    disabled: true
+    provider: "openai"
+    model: "gpt-5-mini"
+    server_group: "music"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    max_tool_calls: 10
+    prompts:
+      - "Find the top 5 most popular songs by Rnbstylerz and recommend similar artists"
+      - "Search for upbeat techno music with high energy for a workout playlist"
+      - "What are the best pop albums released recently? Show me their top tracks"
+
+  music_playlist:
+    type: "music_agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Playlist composition agent using Spotify recommendations"
+    disabled: true
+    provider: "openai"
+    model: "gpt-5-mini"
+    server_group: "music"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    max_tool_calls: 1
+    prompts:
+      - "Create a 15-track chill evening playlist with low energy and high valence. Mix indie and electronic genres."
+      - "Build a road trip playlist: start mellow, build energy in the middle, then wind down. 12 tracks total."
+      - "I like Daft Punk and Tame Impala. Create a playlist of 10 tracks I might enjoy based on these artists."
+
+  music_research:
+    type: "music_research_agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Music research agent combining Spotify and web search"
+    disabled: true
+    provider: "openai"
+    model: "gpt-5-mini"
+    server_group: "music_research"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    max_tool_calls: 1
+    prompts:
+      - "Research the top jazz albums of 2025, find standout tracks on Spotify, and include background on each artist from the web."
+      - "Find trending K-pop artists, get their top tracks on Spotify, and search for their upcoming concert tours."
+
+  music_search_deepseek:
+    type: "music_agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Music search agent using DeepSeek with Spotify MCP"
+    disabled: true
+    provider: "deepseek"
+    model: "deepseek-chat"
+    server_group: "music"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    max_tool_calls: 1
+    prompts:
+      - "Find the top 5 most popular songs by Radiohead and recommend similar artists"
+      - "Search for upbeat electronic music with high energy for a workout playlist"
+
+  # =============================================================================
+  # Trading / Market Data Agent Scenarios (Alpaca MCP)
+  # =============================================================================
+
+  trading_market_data:
+    type: "trading_agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Market data analysis agent using Alpaca MCP tools"
+    provider: "openai"
+    model: "gpt-5-mini"
+    server_group: "trading"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    max_tool_calls: 15
+    prompts:
+      - "Get the latest quote and a 5-day bar chart for AAPL and MSFT, then compare their recent performance."
+      - "Check if the market is open right now. Then get snapshots for NVDA, GOOGL, and AMZN and rank them by today's volume."
+      - "Get the latest crypto quotes for BTC/USD and ETH/USD. Also fetch 7-day bars for both and summarize the trend."
+
+  trading_options_scan:
+    type: "trading_agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Options market data scan using Alpaca MCP tools"
+    disabled: true  # Upstream bug: alpaca-mcp-server uses wrong endpoint for options contracts (404)
+    provider: "openai"
+    model: "gpt-5-mini"
+    server_group: "trading"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    max_tool_calls: 12
+    prompts:
+      - "Find available option contracts for AAPL expiring in the next 30 days. Get the latest quote for the nearest at-the-money call and put."
+      - "Look up TSLA option contracts. Get quotes for a near-term call and compare the bid-ask spread to the stock's latest quote spread."
+
+  # =============================================================================
+  # Playwright Browser Automation Scenarios
+  # =============================================================================
+
+  playwright_web_test:
+    type: "playwright_agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Browser automation agent using Playwright MCP tools"
+    provider: "openai"
+    model: "gpt-5-mini"
+    server_group: "playwright"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    max_tool_calls: 15
+    prompts:
+      - "Navigate to https://example.com, extract the page title and all visible text, and summarize what you see."
+      - "Go to https://httpbin.org/forms/post, fill in the form fields with test data, submit it, and verify the response."
+
+  playwright_web_test_text:
+    type: "playwright_agent"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Browser automation agent using text extraction (no screenshots)"
+    provider: "openai"
+    model: "gpt-5-mini"
+    server_group: "playwright"
+    mcp_transport: "http"
+    loopback_interface: "lo"
+    max_tool_calls: 15
+    use_screenshots: false
+    prompts:
+      - "Navigate to https://example.com and extract all headings and links on the page."
+      - "Go to https://httpbin.org/get, read the JSON response displayed on the page, and summarize it."
+
+  # =============================================================================
+  # Direct Web Search Scenarios (No MCP - Multi-threaded HTTP)
+  # =============================================================================
+
+  direct_web_search:
+    type: "direct_search"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Multi-threaded web search without MCP, using direct HTTP"
+    provider: "openai"
+    model: "gpt-5-mini"
+    search_engine: "brave"  # Options: google, duckduckgo, brave
+    thread_count: 5
+    search_timeout: 30.0
+    max_results: 10
+    synthesize_with_llm: true
+    stream: false
+    queries:
+      - "6G wireless technology latest developments 2026"
+      - "AI traffic patterns mobile networks research"
+      - "3GPP release 19 AI/ML features"
+      - "machine learning network optimization techniques"
+      - "edge computing AI inference latency measurements"
+
+  direct_web_search_google:
+    type: "direct_search"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Multi-threaded web search using Google Custom Search API"
+    disabled: true
+    provider: "openai"
+    model: "gpt-5-mini"
+    search_engine: "google"
+    thread_count: 5
+    search_timeout: 30.0
+    max_results: 10
+    synthesize_with_llm: true
+    queries:
+      - "generative AI network traffic characteristics"
+      - "LLM inference latency requirements"
+      - "mobile AI services QoE metrics"
+      - "6G media streaming requirements"
+      - "AI agent communication protocols"
+
+  direct_web_search_burst:
+    type: "direct_search"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "High-parallelism burst search (stress test)"
+    provider: "openai"
+    model: "gpt-5-mini"
+    search_engine: "brave"
+    thread_count: 20
+    search_timeout: 60.0
+    max_results: 5
+    synthesize_with_llm: false  # Skip LLM to measure pure search traffic
+    queries:
+      - "artificial intelligence trends"
+      - "machine learning applications"
+      - "deep learning research"
+      - "neural network architecture"
+      - "computer vision advances"
+      - "natural language processing"
+      - "reinforcement learning robotics"
+      - "generative AI models"
+      - "AI safety research"
+      - "explainable AI methods"
+      - "federated learning privacy"
+      - "AI edge computing"
+      - "AI model optimization"
+      - "transformer architecture"
+      - "AI hardware accelerators"
+      - "AI cloud services"
+      - "AI API providers"
+      - "AI model deployment"
+      - "AI inference optimization"
+      - "AI training efficiency"
+
+  parallel_search_benchmark:
+    type: "parallel_search_benchmark"
+    inter_prompt_delay_sec: 0  # sec between prompts; 0 = back-to-back
+    description: "Benchmark parallel search performance with varying thread counts"
+    provider: "openai"
+    model: "gpt-5-mini"
+    search_engine: "duckduckgo"
+    thread_counts: [1, 2, 5, 10, 20]
+    queries_per_run: 20
+    search_timeout: 30.0
+    queries:
+      - "artificial intelligence"
+      - "machine learning"
+      - "deep learning"
+      - "neural networks"
+      - "computer vision"
+
+# Default experiment settings
+defaults:
+  runs_per_scenario: 10          # Direct-orchestrator default; run_full_tests.sh overrides globally
+  inter_run_delay_sec: 3.0        # Increased from 1.0 to avoid rate limits
+  timeout_sec: 180                 # Increased for slow network profiles
+  retry_count: 3
+  retry_backoff_sec: 5.0          # Increased backoff for rate limit recovery
+  retry_backoff_multiplier: 2.0
+  stall_gap_sec: 1.0
+  burst_gap_sec: 1.0
+
+# Full-suite runner profile set.
+# Mirrors configs/profiles.yaml:selected_profiles so the matrix matches run_full_tests.sh.
+runner_profile_sets:
+  full_suite_profiles: &full_suite_profiles
+    - no_emulation
+    - 6g_itu_hrllc
+    - 5g_urban
+    - wifi_good
+    - cell_edge
+    - satellite_leo
+    - satellite_geo
+    - congested
+    - 5qi_7
+    - 5qi_80
+
+# Test matrix definition
+# Mirrors the scenario coverage in run_full_tests.sh.
+# `runs` is intentionally omitted so callers can supply a single global run count.
+test_matrix:
+  - scenario: "chat_basic"
+    phase: "chat"
+    profiles: *full_suite_profiles
+    priority: "high"
+
+  - scenario: "chat_streaming"
+    phase: "chat"
+    profiles: *full_suite_profiles
+    priority: "high"
+
+    # - scenario: "realtime_text"
+    #phase: "realtime"
+    #profiles: *full_suite_profiles
+    #priority: "high"
+
+    #- scenario: "realtime_interactive"
+    #phase: "realtime"
+    #profiles: *full_suite_profiles
+    #priority: "medium"
+
+    #- scenario: "realtime_technical"
+    #phase: "realtime"
+    #profiles: *full_suite_profiles
+    #priority: "medium"
+
+    #- scenario: "realtime_multilingual"
+    #phase: "realtime"
+    #profiles: *full_suite_profiles
+    #priority: "medium"
+
+    #- scenario: "realtime_audio"
+    #phase: "realtime"
+    #profiles: *full_suite_profiles
+    #priority: "medium"
+
+  - scenario: "realtime_audio_webrtc"
+    phase: "realtime"
+    profiles: *full_suite_profiles
+    priority: "medium"
+
+    #- scenario: "realtime_text_webrtc"
+    #phase: "realtime"
+    #profiles: *full_suite_profiles
+    #priority: "medium"
+
+  - scenario: "image_generation"
+    phase: "image"
+    profiles: *full_suite_profiles
+    priority: "medium"
+
+  - scenario: "direct_web_search"
+    phase: "search"
+    profiles: *full_suite_profiles
+    priority: "high"
+
+  - scenario: "chat_deepseek"
+    phase: "deepseek"
+    profiles: *full_suite_profiles
+    priority: "high"
+
+  - scenario: "chat_deepseek_streaming"
+    phase: "deepseek"
+    profiles: *full_suite_profiles
+    priority: "high"
+
+  - scenario: "chat_deepseek_coder"
+    phase: "deepseek"
+    profiles: *full_suite_profiles
+    priority: "medium"
+
+  - scenario: "chat_deepseek_reasoner"
+    phase: "deepseek"
+    profiles: *full_suite_profiles
+    priority: "medium"
+
+  - scenario: "direct_web_search_deepseek"
+    phase: "deepseek"
+    profiles: *full_suite_profiles
+    priority: "high"
+
+  - scenario: "chat_gemini"
+    phase: "gemini"
+    profiles: *full_suite_profiles
+    priority: "medium"
+
+  - scenario: "trading_market_data"
+    phase: "trading"
+    profiles: *full_suite_profiles
+    priority: "medium"
+    runner_enabled_by_default: true
+    prereqs:
+      - "ALPACA_API_KEY"
+      - "ALPACA_SECRET_KEY"
+      - "cmd:uvx"
+
+  - scenario: "trading_options_scan"
+    phase: "trading"
+    profiles: *full_suite_profiles
+    priority: "medium"
+    runner_enabled_by_default: true
+    prereqs:
+      - "ALPACA_API_KEY"
+      - "ALPACA_SECRET_KEY"
+      - "cmd:uvx"
+
+  - scenario: "computer_control_agent"
+    phase: "computer_use"
+    profiles: *full_suite_profiles
+    priority: "medium"
+    runner_enabled_by_default: true
+    prereqs:
+      - "playwright_chromium"
+
+  - scenario: "playwright_web_test"
+    phase: "playwright"
+    profiles: *full_suite_profiles
+    priority: "medium"
+    runner_enabled_by_default: true
+    prereqs:
+      - "playwright_chromium"
+
+  - scenario: "multimodal_analysis"
+    phase: "multimodal"
+    profiles: *full_suite_profiles
+    priority: "medium"
+    runner_enabled_by_default: true
+    prereqs:
+      - "examples/assets/network_diagram.png"
+      - "../../Math_olympiad.pdf"
+
+  - scenario: "direct_web_search_google"
+    phase: "google_search"
+    profiles: *full_suite_profiles
+    priority: "medium"
+    runner_enabled_by_default: false
+    prereqs:
+      - "GOOGLE_SEARCH_API_KEY"
+      - "GOOGLE_SEARCH_CX"
+
+  - scenario: "direct_web_search_burst"
+    phase: "stress"
+    profiles: *full_suite_profiles
+    priority: "medium"
+    runner_enabled_by_default: false
+
+  - scenario: "parallel_search_benchmark"
+    phase: "stress"
+    profiles: *full_suite_profiles
+    priority: "low"
+    runner_enabled_by_default: false
+
+  - scenario: "chat_vllm"
+    phase: "vllm"
+    profiles: *full_suite_profiles
+    priority: "high"
+    runner_enabled_by_default: true
+    prereqs:
+      - "http://localhost:8000/v1/models"
+
+  - scenario: "video_understanding_vllm"
+    phase: "vllm"
+    profiles: *full_suite_profiles
+    priority: "high"
+    runner_enabled_by_default: true
+    prereqs:
+      - "http://localhost:8000/v1/models"
+      - "examples/assets/test_video.mp4"

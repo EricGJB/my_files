@@ -1,0 +1,14 @@
+{
+  "scenario_id": "realtime_audio_webrtc",
+  "session_id": "3647aef6-5ee2-42ba-be57-502897a2ca24",
+  "run_index": 7,
+  "turn_index": 2,
+  "network_profile": "congested",
+  "audio_format": "pcm16",
+  "sample_rate": 24000,
+  "input_bytes": 115200,
+  "output_bytes": 2880,
+  "input_path": "logs/audio/20260427_185855_3647aef6_turn002_input.pcm",
+  "output_path": "logs/audio/20260427_185855_3647aef6_turn002_output.pcm",
+  "audio_chunks_count": 3
+}

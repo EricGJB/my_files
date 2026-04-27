@@ -1,0 +1,14 @@
+{
+  "scenario_id": "realtime_audio_webrtc",
+  "session_id": "926af585-fbd5-4681-b2f6-fe2300cf7f3b",
+  "run_index": 8,
+  "turn_index": 0,
+  "network_profile": "satellite_leo",
+  "audio_format": "pcm16",
+  "sample_rate": 24000,
+  "input_bytes": 60000,
+  "output_bytes": 101760,
+  "input_path": "logs/audio/20260427_184722_926af585_turn000_input.pcm",
+  "output_path": "logs/audio/20260427_184722_926af585_turn000_output.pcm",
+  "audio_chunks_count": 106
+}

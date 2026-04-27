@@ -1,0 +1,264 @@
+2026-04-27 18:32:52,535 - netemu.emulator - INFO - Auto-detected default interface: eth0
+2026-04-27 18:32:52,550 - netemu.emulator - INFO - Auto-detected default interface: eth0
+2026-04-27 18:32:52,550 - netemu.emulator - INFO - Loaded 10 network profiles from configs/profiles.yaml
+2026-04-27 18:32:52,552 - capture.controller - INFO - Starting capture: sudo tcpdump -i eth0 -w results/captures/capture_20260427_183252.pcap -U port 443 or port 80 or port 8080 or port 8000
+2026-04-27 18:32:52,552 - capture.controller - INFO - Starting capture: sudo tcpdump -i lo -w results/captures/capture_lo_20260427_183252.pcap -U tcp and not port 22 and not port 53
+2026-04-27 18:32:52,608 - orchestrator - INFO - Applying network profile: 5g_urban (bidirectional)
+2026-04-27 18:32:52,750 - netemu.emulator - INFO - IFB device ifb0 initialized for ingress shaping
+2026-04-27 18:32:52,803 - netemu.emulator - INFO - Applied bidirectional profile: 5g_urban
+2026-04-27 18:32:52,803 - orchestrator - INFO - Running realtime_audio_webrtc [1/10] with profile 5g_urban
+2026-04-27 18:32:53,395 - clients.realtime_webrtc_client - INFO - SDP files saved: /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183253_66674489_offer.sdp, /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183253_66674489_answer.sdp
+2026-04-27 18:32:53,396 - aioice.ice - INFO - Connection(0) Check CandidatePair(('172.18.20.254', 38364) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:32:53,396 - aioice.ice - INFO - Connection(0) Check CandidatePair(('10.255.0.1', 55919) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:32:53,396 - aioice.ice - INFO - Connection(0) Check CandidatePair(('172.18.20.254', 38364) -> ('13.71.25.29', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:32:53,396 - aioice.ice - INFO - Connection(0) Check CandidatePair(('172.18.20.254', 38364) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:32:53,417 - aioice.ice - INFO - Connection(0) Check CandidatePair(('10.255.0.1', 55919) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:32:53,437 - aioice.ice - INFO - Connection(0) Check CandidatePair(('172.18.20.254', 38364) -> ('13.71.25.29', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:32:53,457 - aioice.ice - INFO - Connection(0) Check CandidatePair(('10.255.0.1', 55919) -> ('13.71.25.29', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:32:53,478 - aioice.ice - INFO - Connection(0) Check CandidatePair(('172.18.20.254', 38364) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:32:53,498 - aioice.ice - INFO - Connection(0) Check CandidatePair(('10.255.0.1', 55919) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:32:53,630 - aioice.ice - INFO - Connection(0) Check CandidatePair(('10.255.0.1', 55919) -> ('20.184.36.134', 3478)) nominating pair
+2026-04-27 18:32:53,635 - aioice.ice - INFO - Connection(0) Check CandidatePair(('172.18.20.254', 38364) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:32:53,710 - aioice.ice - INFO - Connection(0) Check CandidatePair(('172.18.20.254', 38364) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:32:53,747 - aioice.ice - INFO - Connection(0) Check CandidatePair(('10.255.0.1', 55919) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:32:53,748 - aioice.ice - INFO - Connection(0) Check CandidatePair(('172.18.20.254', 38364) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:32:53,769 - aioice.ice - INFO - Connection(0) Check CandidatePair(('10.255.0.1', 55919) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:32:53,828 - aioice.ice - INFO - Connection(0) Check CandidatePair(('10.255.0.1', 55919) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:32:53,828 - aioice.ice - INFO - Connection(0) ICE completed
+2026-04-27 18:32:54,878 - clients.realtime_webrtc_client - INFO - Realtime WebRTC session connected
+2026-04-27 18:32:56,711 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:33:00,810 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:33:04,437 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:33:07,331 - orchestrator - INFO -   Completed: success=True, latency=6.14s, api_calls=3, tools=0
+2026-04-27 18:33:08,332 - orchestrator - INFO - Running realtime_audio_webrtc [2/10] with profile 5g_urban
+2026-04-27 18:33:08,891 - clients.realtime_webrtc_client - INFO - SDP files saved: /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183308_1c8cb026_offer.sdp, /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183308_1c8cb026_answer.sdp
+2026-04-27 18:33:08,892 - aioice.ice - INFO - Connection(2) Check CandidatePair(('172.18.20.254', 46999) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:33:08,892 - aioice.ice - INFO - Connection(2) Check CandidatePair(('10.255.0.1', 34736) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:33:08,892 - aioice.ice - INFO - Connection(2) Check CandidatePair(('172.18.20.254', 46999) -> ('13.71.25.29', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:33:08,892 - aioice.ice - INFO - Connection(2) Check CandidatePair(('172.18.20.254', 46999) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:33:08,913 - aioice.ice - INFO - Connection(2) Check CandidatePair(('10.255.0.1', 34736) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:33:08,933 - aioice.ice - INFO - Connection(2) Check CandidatePair(('172.18.20.254', 46999) -> ('13.71.25.29', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:33:08,954 - aioice.ice - INFO - Connection(2) Check CandidatePair(('10.255.0.1', 34736) -> ('13.71.25.29', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:33:08,974 - aioice.ice - INFO - Connection(2) Check CandidatePair(('172.18.20.254', 46999) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:33:08,994 - aioice.ice - INFO - Connection(2) Check CandidatePair(('10.255.0.1', 34736) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:33:09,118 - aioice.ice - INFO - Connection(2) Check CandidatePair(('172.18.20.254', 46999) -> ('20.184.36.134', 3478)) nominating pair
+2026-04-27 18:33:09,128 - aioice.ice - INFO - Connection(2) Check CandidatePair(('10.255.0.1', 34736) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:09,218 - aioice.ice - INFO - Connection(2) Check CandidatePair(('172.18.20.254', 46999) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:09,238 - aioice.ice - INFO - Connection(2) Check CandidatePair(('10.255.0.1', 34736) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:09,271 - aioice.ice - INFO - Connection(2) Check CandidatePair(('10.255.0.1', 34736) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:09,335 - aioice.ice - INFO - Connection(2) Check CandidatePair(('172.18.20.254', 46999) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:09,335 - aioice.ice - INFO - Connection(2) ICE completed
+2026-04-27 18:33:13,396 - clients.realtime_webrtc_client - INFO - Realtime WebRTC session connected
+2026-04-27 18:33:14,362 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:33:19,246 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:33:23,442 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:33:28,171 - orchestrator - INFO -   Completed: success=True, latency=9.85s, api_calls=3, tools=0
+2026-04-27 18:33:29,171 - orchestrator - INFO - Running realtime_audio_webrtc [3/10] with profile 5g_urban
+2026-04-27 18:33:29,698 - clients.realtime_webrtc_client - INFO - SDP files saved: /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183329_218ec8f6_offer.sdp, /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183329_218ec8f6_answer.sdp
+2026-04-27 18:33:29,699 - aioice.ice - INFO - Connection(4) Check CandidatePair(('172.18.20.254', 34902) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:33:29,699 - aioice.ice - INFO - Connection(4) Check CandidatePair(('10.255.0.1', 50091) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:33:29,699 - aioice.ice - INFO - Connection(4) Check CandidatePair(('172.18.20.254', 34902) -> ('13.71.25.29', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:33:29,699 - aioice.ice - INFO - Connection(4) Check CandidatePair(('172.18.20.254', 34902) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:33:29,720 - aioice.ice - INFO - Connection(4) Check CandidatePair(('10.255.0.1', 50091) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:33:29,740 - aioice.ice - INFO - Connection(4) Check CandidatePair(('172.18.20.254', 34902) -> ('13.71.25.29', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:33:29,760 - aioice.ice - INFO - Connection(4) Check CandidatePair(('10.255.0.1', 50091) -> ('13.71.25.29', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:33:29,781 - aioice.ice - INFO - Connection(4) Check CandidatePair(('172.18.20.254', 34902) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:33:29,801 - aioice.ice - INFO - Connection(4) Check CandidatePair(('10.255.0.1', 50091) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:33:29,917 - aioice.ice - INFO - Connection(4) Check CandidatePair(('172.18.20.254', 34902) -> ('20.184.36.134', 3478)) nominating pair
+2026-04-27 18:33:29,926 - aioice.ice - INFO - Connection(4) Check CandidatePair(('10.255.0.1', 50091) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:30,015 - aioice.ice - INFO - Connection(4) Check CandidatePair(('172.18.20.254', 34902) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:30,036 - aioice.ice - INFO - Connection(4) Check CandidatePair(('10.255.0.1', 50091) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:30,053 - aioice.ice - INFO - Connection(4) Check CandidatePair(('172.18.20.254', 34902) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:30,070 - aioice.ice - INFO - Connection(4) Check CandidatePair(('10.255.0.1', 50091) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:30,123 - aioice.ice - INFO - Connection(4) Check CandidatePair(('172.18.20.254', 34902) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:30,123 - aioice.ice - INFO - Connection(4) ICE completed
+2026-04-27 18:33:34,182 - clients.realtime_webrtc_client - INFO - Realtime WebRTC session connected
+2026-04-27 18:33:35,831 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:33:40,165 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:33:45,405 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:33:50,151 - orchestrator - INFO -   Completed: success=True, latency=9.38s, api_calls=3, tools=0
+2026-04-27 18:33:51,152 - orchestrator - INFO - Running realtime_audio_webrtc [4/10] with profile 5g_urban
+2026-04-27 18:33:51,677 - clients.realtime_webrtc_client - INFO - SDP files saved: /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183351_7b9ff943_offer.sdp, /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183351_7b9ff943_answer.sdp
+2026-04-27 18:33:51,678 - aioice.ice - INFO - Connection(6) Check CandidatePair(('172.18.20.254', 43162) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:33:51,678 - aioice.ice - INFO - Connection(6) Check CandidatePair(('10.255.0.1', 38038) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:33:51,678 - aioice.ice - INFO - Connection(6) Check CandidatePair(('172.18.20.254', 43162) -> ('13.71.25.29', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:33:51,678 - aioice.ice - INFO - Connection(6) Check CandidatePair(('172.18.20.254', 43162) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:33:51,699 - aioice.ice - INFO - Connection(6) Check CandidatePair(('10.255.0.1', 38038) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:33:51,719 - aioice.ice - INFO - Connection(6) Check CandidatePair(('172.18.20.254', 43162) -> ('13.71.25.29', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:33:51,739 - aioice.ice - INFO - Connection(6) Check CandidatePair(('10.255.0.1', 38038) -> ('13.71.25.29', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:33:51,760 - aioice.ice - INFO - Connection(6) Check CandidatePair(('172.18.20.254', 43162) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:33:51,780 - aioice.ice - INFO - Connection(6) Check CandidatePair(('10.255.0.1', 38038) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:33:51,900 - aioice.ice - INFO - Connection(6) Check CandidatePair(('172.18.20.254', 43162) -> ('20.184.36.134', 3478)) nominating pair
+2026-04-27 18:33:51,911 - aioice.ice - INFO - Connection(6) Check CandidatePair(('10.255.0.1', 38038) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:51,993 - aioice.ice - INFO - Connection(6) Check CandidatePair(('172.18.20.254', 43162) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:52,030 - aioice.ice - INFO - Connection(6) Check CandidatePair(('10.255.0.1', 38038) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:52,043 - aioice.ice - INFO - Connection(6) Check CandidatePair(('10.255.0.1', 38038) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:52,115 - aioice.ice - INFO - Connection(6) Check CandidatePair(('172.18.20.254', 43162) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:33:52,115 - aioice.ice - INFO - Connection(6) ICE completed
+2026-04-27 18:33:53,306 - clients.realtime_webrtc_client - INFO - Realtime WebRTC session connected
+2026-04-27 18:33:54,981 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:33:59,167 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:34:02,961 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:34:07,151 - orchestrator - INFO -   Completed: success=True, latency=8.58s, api_calls=3, tools=0
+2026-04-27 18:34:08,152 - orchestrator - INFO - Running realtime_audio_webrtc [5/10] with profile 5g_urban
+2026-04-27 18:34:08,720 - clients.realtime_webrtc_client - INFO - SDP files saved: /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183408_c4fe14ec_offer.sdp, /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183408_c4fe14ec_answer.sdp
+2026-04-27 18:34:08,721 - aioice.ice - INFO - Connection(8) Check CandidatePair(('172.18.20.254', 43524) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:34:08,721 - aioice.ice - INFO - Connection(8) Check CandidatePair(('10.255.0.1', 55730) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:34:08,721 - aioice.ice - INFO - Connection(8) Check CandidatePair(('172.18.20.254', 43524) -> ('13.71.25.29', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:34:08,721 - aioice.ice - INFO - Connection(8) Check CandidatePair(('172.18.20.254', 43524) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:34:08,741 - aioice.ice - INFO - Connection(8) Check CandidatePair(('10.255.0.1', 55730) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:34:08,762 - aioice.ice - INFO - Connection(8) Check CandidatePair(('172.18.20.254', 43524) -> ('13.71.25.29', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:34:08,782 - aioice.ice - INFO - Connection(8) Check CandidatePair(('10.255.0.1', 55730) -> ('13.71.25.29', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:34:08,802 - aioice.ice - INFO - Connection(8) Check CandidatePair(('172.18.20.254', 43524) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:34:08,823 - aioice.ice - INFO - Connection(8) Check CandidatePair(('10.255.0.1', 55730) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:34:08,932 - aioice.ice - INFO - Connection(8) Check CandidatePair(('172.18.20.254', 43524) -> ('20.184.36.134', 3478)) nominating pair
+2026-04-27 18:34:08,944 - aioice.ice - INFO - Connection(8) Check CandidatePair(('10.255.0.1', 55730) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:09,035 - aioice.ice - INFO - Connection(8) Check CandidatePair(('172.18.20.254', 43524) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:09,076 - aioice.ice - INFO - Connection(8) Check CandidatePair(('10.255.0.1', 55730) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:09,091 - aioice.ice - INFO - Connection(8) Check CandidatePair(('10.255.0.1', 55730) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:09,143 - aioice.ice - INFO - Connection(8) Check CandidatePair(('172.18.20.254', 43524) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:09,143 - aioice.ice - INFO - Connection(8) ICE completed
+2026-04-27 18:34:13,223 - clients.realtime_webrtc_client - INFO - Realtime WebRTC session connected
+2026-04-27 18:34:14,265 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:34:19,323 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:34:23,452 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:34:28,200 - orchestrator - INFO -   Completed: success=True, latency=7.96s, api_calls=3, tools=0
+2026-04-27 18:34:29,201 - orchestrator - INFO - Running realtime_audio_webrtc [6/10] with profile 5g_urban
+2026-04-27 18:34:29,754 - clients.realtime_webrtc_client - INFO - SDP files saved: /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183429_c502eb6c_offer.sdp, /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183429_c502eb6c_answer.sdp
+2026-04-27 18:34:29,755 - aioice.ice - INFO - Connection(10) Check CandidatePair(('172.18.20.254', 43243) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:34:29,755 - aioice.ice - INFO - Connection(10) Check CandidatePair(('10.255.0.1', 39560) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:34:29,755 - aioice.ice - INFO - Connection(10) Check CandidatePair(('172.18.20.254', 43243) -> ('13.71.25.29', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:34:29,755 - aioice.ice - INFO - Connection(10) Check CandidatePair(('172.18.20.254', 43243) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:34:29,776 - aioice.ice - INFO - Connection(10) Check CandidatePair(('10.255.0.1', 39560) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:34:29,796 - aioice.ice - INFO - Connection(10) Check CandidatePair(('172.18.20.254', 43243) -> ('13.71.25.29', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:34:29,816 - aioice.ice - INFO - Connection(10) Check CandidatePair(('10.255.0.1', 39560) -> ('13.71.25.29', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:34:29,837 - aioice.ice - INFO - Connection(10) Check CandidatePair(('172.18.20.254', 43243) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:34:29,857 - aioice.ice - INFO - Connection(10) Check CandidatePair(('10.255.0.1', 39560) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:34:29,966 - aioice.ice - INFO - Connection(10) Check CandidatePair(('172.18.20.254', 43243) -> ('20.184.36.134', 3478)) nominating pair
+2026-04-27 18:34:29,982 - aioice.ice - INFO - Connection(10) Check CandidatePair(('10.255.0.1', 39560) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:30,078 - aioice.ice - INFO - Connection(10) Check CandidatePair(('172.18.20.254', 43243) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:30,089 - aioice.ice - INFO - Connection(10) Check CandidatePair(('10.255.0.1', 39560) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:30,114 - aioice.ice - INFO - Connection(10) Check CandidatePair(('172.18.20.254', 43243) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:30,129 - aioice.ice - INFO - Connection(10) Check CandidatePair(('10.255.0.1', 39560) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:30,180 - aioice.ice - INFO - Connection(10) Check CandidatePair(('172.18.20.254', 43243) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:30,180 - aioice.ice - INFO - Connection(10) ICE completed
+2026-04-27 18:34:31,254 - clients.realtime_webrtc_client - INFO - Realtime WebRTC session connected
+2026-04-27 18:34:32,432 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:34:37,513 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:34:41,408 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:34:44,321 - orchestrator - INFO -   Completed: success=True, latency=6.71s, api_calls=3, tools=0
+2026-04-27 18:34:45,322 - orchestrator - INFO - Running realtime_audio_webrtc [7/10] with profile 5g_urban
+2026-04-27 18:34:45,876 - clients.realtime_webrtc_client - INFO - SDP files saved: /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183445_5000478c_offer.sdp, /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183445_5000478c_answer.sdp
+2026-04-27 18:34:45,878 - aioice.ice - INFO - Connection(12) Check CandidatePair(('172.18.20.254', 38667) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:34:45,878 - aioice.ice - INFO - Connection(12) Check CandidatePair(('10.255.0.1', 48401) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:34:45,878 - aioice.ice - INFO - Connection(12) Check CandidatePair(('172.18.20.254', 38667) -> ('13.71.25.29', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:34:45,878 - aioice.ice - INFO - Connection(12) Check CandidatePair(('172.18.20.254', 38667) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:34:45,898 - aioice.ice - INFO - Connection(12) Check CandidatePair(('10.255.0.1', 48401) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:34:45,919 - aioice.ice - INFO - Connection(12) Check CandidatePair(('172.18.20.254', 38667) -> ('13.71.25.29', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:34:45,939 - aioice.ice - INFO - Connection(12) Check CandidatePair(('10.255.0.1', 48401) -> ('13.71.25.29', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:34:45,959 - aioice.ice - INFO - Connection(12) Check CandidatePair(('172.18.20.254', 38667) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:34:45,980 - aioice.ice - INFO - Connection(12) Check CandidatePair(('10.255.0.1', 48401) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:34:46,108 - aioice.ice - INFO - Connection(12) Check CandidatePair(('172.18.20.254', 38667) -> ('20.184.36.134', 3478)) nominating pair
+2026-04-27 18:34:46,113 - aioice.ice - INFO - Connection(12) Check CandidatePair(('10.255.0.1', 48401) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:46,193 - aioice.ice - INFO - Connection(12) Check CandidatePair(('172.18.20.254', 38667) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:46,229 - aioice.ice - INFO - Connection(12) Check CandidatePair(('172.18.20.254', 38667) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:46,240 - aioice.ice - INFO - Connection(12) Check CandidatePair(('10.255.0.1', 48401) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:46,257 - aioice.ice - INFO - Connection(12) Check CandidatePair(('10.255.0.1', 48401) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:46,311 - aioice.ice - INFO - Connection(12) Check CandidatePair(('172.18.20.254', 38667) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:34:46,311 - aioice.ice - INFO - Connection(12) ICE completed
+2026-04-27 18:34:47,429 - clients.realtime_webrtc_client - INFO - Realtime WebRTC session connected
+2026-04-27 18:34:48,355 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:34:52,368 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:34:57,176 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:35:02,507 - orchestrator - INFO -   Completed: success=True, latency=10.08s, api_calls=3, tools=0
+2026-04-27 18:35:03,508 - orchestrator - INFO - Running realtime_audio_webrtc [8/10] with profile 5g_urban
+2026-04-27 18:35:04,012 - clients.realtime_webrtc_client - INFO - SDP files saved: /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183504_02be62b7_offer.sdp, /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183504_02be62b7_answer.sdp
+2026-04-27 18:35:04,014 - aioice.ice - INFO - Connection(14) Check CandidatePair(('172.18.20.254', 42309) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:35:04,014 - aioice.ice - INFO - Connection(14) Check CandidatePair(('10.255.0.1', 55223) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:35:04,014 - aioice.ice - INFO - Connection(14) Check CandidatePair(('172.18.20.254', 42309) -> ('13.71.25.29', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:35:04,014 - aioice.ice - INFO - Connection(14) Check CandidatePair(('172.18.20.254', 42309) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:35:04,034 - aioice.ice - INFO - Connection(14) Check CandidatePair(('10.255.0.1', 55223) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:35:04,055 - aioice.ice - INFO - Connection(14) Check CandidatePair(('172.18.20.254', 42309) -> ('13.71.25.29', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:35:04,075 - aioice.ice - INFO - Connection(14) Check CandidatePair(('10.255.0.1', 55223) -> ('13.71.25.29', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:35:04,095 - aioice.ice - INFO - Connection(14) Check CandidatePair(('172.18.20.254', 42309) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:35:04,116 - aioice.ice - INFO - Connection(14) Check CandidatePair(('10.255.0.1', 55223) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:35:04,234 - aioice.ice - INFO - Connection(14) Check CandidatePair(('10.255.0.1', 55223) -> ('20.184.36.134', 3478)) nominating pair
+2026-04-27 18:35:04,236 - aioice.ice - INFO - Connection(14) Check CandidatePair(('172.18.20.254', 42309) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:04,342 - aioice.ice - INFO - Connection(14) Check CandidatePair(('172.18.20.254', 42309) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:04,353 - aioice.ice - INFO - Connection(14) Check CandidatePair(('10.255.0.1', 55223) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:04,368 - aioice.ice - INFO - Connection(14) Check CandidatePair(('172.18.20.254', 42309) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:04,387 - aioice.ice - INFO - Connection(14) Check CandidatePair(('10.255.0.1', 55223) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:04,450 - aioice.ice - INFO - Connection(14) Check CandidatePair(('10.255.0.1', 55223) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:04,450 - aioice.ice - INFO - Connection(14) ICE completed
+2026-04-27 18:35:08,531 - clients.realtime_webrtc_client - INFO - Realtime WebRTC session connected
+2026-04-27 18:35:09,397 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:35:13,596 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:35:17,991 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:35:22,786 - orchestrator - INFO -   Completed: success=True, latency=9.96s, api_calls=3, tools=0
+2026-04-27 18:35:23,787 - orchestrator - INFO - Running realtime_audio_webrtc [9/10] with profile 5g_urban
+2026-04-27 18:35:24,316 - clients.realtime_webrtc_client - INFO - SDP files saved: /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183524_bcdf3423_offer.sdp, /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183524_bcdf3423_answer.sdp
+2026-04-27 18:35:24,317 - aioice.ice - INFO - Connection(16) Check CandidatePair(('172.18.20.254', 34966) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:35:24,317 - aioice.ice - INFO - Connection(16) Check CandidatePair(('10.255.0.1', 55395) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:35:24,317 - aioice.ice - INFO - Connection(16) Check CandidatePair(('172.18.20.254', 34966) -> ('13.71.25.29', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:35:24,317 - aioice.ice - INFO - Connection(16) Check CandidatePair(('172.18.20.254', 34966) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:35:24,338 - aioice.ice - INFO - Connection(16) Check CandidatePair(('10.255.0.1', 55395) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:35:24,358 - aioice.ice - INFO - Connection(16) Check CandidatePair(('172.18.20.254', 34966) -> ('13.71.25.29', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:35:24,379 - aioice.ice - INFO - Connection(16) Check CandidatePair(('10.255.0.1', 55395) -> ('13.71.25.29', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:35:24,399 - aioice.ice - INFO - Connection(16) Check CandidatePair(('172.18.20.254', 34966) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:35:24,420 - aioice.ice - INFO - Connection(16) Check CandidatePair(('10.255.0.1', 55395) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:35:24,539 - aioice.ice - INFO - Connection(16) Check CandidatePair(('172.18.20.254', 34966) -> ('20.184.36.134', 3478)) nominating pair
+2026-04-27 18:35:24,549 - aioice.ice - INFO - Connection(16) Check CandidatePair(('10.255.0.1', 55395) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:24,633 - aioice.ice - INFO - Connection(16) Check CandidatePair(('172.18.20.254', 34966) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:24,661 - aioice.ice - INFO - Connection(16) Check CandidatePair(('10.255.0.1', 55395) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:24,676 - aioice.ice - INFO - Connection(16) Check CandidatePair(('172.18.20.254', 34966) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:24,699 - aioice.ice - INFO - Connection(16) Check CandidatePair(('10.255.0.1', 55395) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:24,749 - aioice.ice - INFO - Connection(16) Check CandidatePair(('172.18.20.254', 34966) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:24,749 - aioice.ice - INFO - Connection(16) ICE completed
+2026-04-27 18:35:28,824 - clients.realtime_webrtc_client - INFO - Realtime WebRTC session connected
+2026-04-27 18:35:29,850 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:35:33,399 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:35:39,173 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:35:43,234 - orchestrator - INFO -   Completed: success=True, latency=9.22s, api_calls=3, tools=0
+2026-04-27 18:35:44,234 - orchestrator - INFO - Running realtime_audio_webrtc [10/10] with profile 5g_urban
+2026-04-27 18:35:44,774 - clients.realtime_webrtc_client - INFO - SDP files saved: /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183544_9e100f97_offer.sdp, /home/admin/.openclaw/workspace/6G-Testbed/aitestbed/logs/sdp/20260427_183544_9e100f97_answer.sdp
+2026-04-27 18:35:44,775 - aioice.ice - INFO - Connection(18) Check CandidatePair(('172.18.20.254', 58074) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:35:44,775 - aioice.ice - INFO - Connection(18) Check CandidatePair(('10.255.0.1', 59463) -> ('20.184.36.134', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:35:44,775 - aioice.ice - INFO - Connection(18) Check CandidatePair(('172.18.20.254', 58074) -> ('13.71.25.29', 3478)) State.FROZEN -> State.WAITING
+2026-04-27 18:35:44,775 - aioice.ice - INFO - Connection(18) Check CandidatePair(('172.18.20.254', 58074) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:35:44,796 - aioice.ice - INFO - Connection(18) Check CandidatePair(('10.255.0.1', 59463) -> ('20.184.36.134', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:35:44,816 - aioice.ice - INFO - Connection(18) Check CandidatePair(('172.18.20.254', 58074) -> ('13.71.25.29', 3478)) State.WAITING -> State.IN_PROGRESS
+2026-04-27 18:35:44,836 - aioice.ice - INFO - Connection(18) Check CandidatePair(('10.255.0.1', 59463) -> ('13.71.25.29', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:35:44,857 - aioice.ice - INFO - Connection(18) Check CandidatePair(('172.18.20.254', 58074) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:35:44,877 - aioice.ice - INFO - Connection(18) Check CandidatePair(('10.255.0.1', 59463) -> ('4.217.235.100', 3478)) State.FROZEN -> State.IN_PROGRESS
+2026-04-27 18:35:44,988 - aioice.ice - INFO - Connection(18) Check CandidatePair(('172.18.20.254', 58074) -> ('20.184.36.134', 3478)) nominating pair
+2026-04-27 18:35:45,008 - aioice.ice - INFO - Connection(18) Check CandidatePair(('10.255.0.1', 59463) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:45,085 - aioice.ice - INFO - Connection(18) Check CandidatePair(('172.18.20.254', 58074) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:45,113 - aioice.ice - INFO - Connection(18) Check CandidatePair(('10.255.0.1', 59463) -> ('4.217.235.100', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:45,129 - aioice.ice - INFO - Connection(18) Check CandidatePair(('172.18.20.254', 58074) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:45,142 - aioice.ice - INFO - Connection(18) Check CandidatePair(('10.255.0.1', 59463) -> ('13.71.25.29', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:45,203 - aioice.ice - INFO - Connection(18) Check CandidatePair(('172.18.20.254', 58074) -> ('20.184.36.134', 3478)) State.IN_PROGRESS -> State.SUCCEEDED
+2026-04-27 18:35:45,203 - aioice.ice - INFO - Connection(18) ICE completed
+2026-04-27 18:35:49,245 - clients.realtime_webrtc_client - INFO - Realtime WebRTC session connected
+2026-04-27 18:35:50,138 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:35:54,564 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:35:58,982 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/audio/speech "HTTP/1.1 200 OK"
+2026-04-27 18:36:01,997 - orchestrator - INFO -   Completed: success=True, latency=7.69s, api_calls=3, tools=0
+2026-04-27 18:36:02,060 - netemu.emulator - INFO - IFB device ifb0 torn down
+2026-04-27 18:36:07,067 - capture.controller - INFO - Capture stopped: results/captures/capture_20260427_183252.pcap
+2026-04-27 18:36:12,072 - capture.controller - INFO - Capture stopped: results/captures/capture_lo_20260427_183252.pcap
+
+============================================================
+Results for realtime_audio_webrtc with 5g_urban
+============================================================
+  Samples: 30
+  Latency (mean): 2.852s
+  Latency (p95):  4.069s
+  Success rate:   100.0%
+  Request bytes:  83227
+  Response bytes: 68683
+  UL/DL ratio:    1.212
+  TTFT (p95):     2.381s
+  TTLT (p95):     4.113s
+  Stall rate:     0.000
+  Burst P/M:      1.60
+  Burst CV:       0.25
